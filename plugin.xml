@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.custom.MTAPlugin" version="1.0.0">
+    <name>MTAPlugin</name>
+    <description>腾讯统计插件</description>
+    <js-module name="MTAPlugin" src="www/MTAPlugin.js">
+        <clobbers target="cordova.plugins.MTAPlugin"/>
+    </js-module>
+    <platform name="ios">
+        <!--SDK依赖-->
+        <source-file src="src/ios/libmtasdk.a" framework="true"/>
+
+        <header-file src="src/ios/MTA.h"/>
+        <header-file src="src/ios/MTA+Account.h"/>
+        <header-file src="src/ios/MTAConfig.h"/>
+        <header-file src="src/ios/MTAPlugin.h"/>
+        <source-file src="src/ios/MTAPlugin.m"/>
+
+        <config-file parent="/*" target="config.xml">
+            <feature name="MTAPlugin">
+                <param name="ios-package" value="MTAPlugin"/>
+            </feature>
+        </config-file>
+    </platform>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="MTAPlugin">
+                <param name="android-package" value="com.custom.MTAPlugin.MTAPlugin.MTAPlugin"/>
+            </feature>
+        </config-file>
+        <config-file parent="application" target="AndroidManifest.xml">
+            <meta-data android:name="TA_APPKEY" android:value="A369HJFJ3WLA"/>
+            <meta-data android:name="InstallChannel" android:value="play"/>
+            <provider android:name="com.tencent.mid.api.MidProvider"
+                      android:authorities="${applicationId}.TENCENT.MID.V3" android:exported="true"></provider>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+            <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+        </config-file>
+        <source-file src="libs/mta-android-sdk-3.4.4.jar" target-dir="libs/"/>
+        <source-file src="libs/mid-sdk-4.06.jar" target-dir="libs/"/>
+        <source-file src="src/android/MTAPlugin.java" target-dir="src/com/custom/MTAPlugin/MTAPlugin"/>
+    </platform>
+</plugin>

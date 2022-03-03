@@ -1,0 +1,23 @@
+{
+  "name": "com.custom.MTAPlugin",
+  "version": "1.0.0",
+  "description": "腾讯统计插件",
+  "cordova": {
+    "id": "com.custom.MTAPlugin",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MBPSCD/MTAPlugin.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "ISC"
+}
